@@ -1,0 +1,33 @@
+﻿.food-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+
+}
+
+    .food-list li {
+        flex: 0 0 200px;
+        padding: 5px;
+        background: #3498db;
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 0px 5px rgb(255, 255, 255);
+    }
+
+    .food-list button {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .food-list button:hover {
+        background: #ffd800;
+    }
+
+    .food-list button:active {
+        background: #4cff00;
+    }
+

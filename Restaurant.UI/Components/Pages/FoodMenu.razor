@@ -1,0 +1,46 @@
+﻿@page "/FoodMenu"
+@using Restaurant.DAL
+@using Restaurant.DAL.Models
+@using Microsoft.EntityFrameworkCore
+@inject RestaurantDbContext Db
+
+@if (isLoading)
+{
+    <p><em>Loading...</em></p>
+}
+else if (!foods.Any())
+{
+    <p><em>No food items found.</em></p>
+}
+else
+{
+    <div class="food-cards">
+        <h1>Food list: </h1>
+        <ul class="food-list">
+            @foreach (var f in foods)
+            {
+                <li>
+                    <h2>@f.Name</h2>
+                    <p>Price: @f.Price.ToString("C")</p>
+                    <p>Left: @f.Left</p>
+                    <button @onclick="DoNothing">Buy</button>
+                </li>
+            }
+        </ul>
+    </div>
+}
+
+@code {
+    private List<Food> foods = new();
+    private bool isLoading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        foods = await Db.Food.ToListAsync();
+        isLoading = false;
+    }
+
+    void DoNothing()
+    {
+    }
+}
